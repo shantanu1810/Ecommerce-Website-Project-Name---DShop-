@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop - Search </title>
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/home_css.css' %}">
+    <style>
+        .prodis{
+            border: 2px solid blue;
+            margin-top: 10px;
+            border-radius: 10px;
+            height: 153px;
+            text-align: left;
+        }
+        .pimg{
+            padding-right: 10px;
+            border-radius: 10px;
+            float: left;
+        }
+        .pname{
+            margin: 10px;
+        }
+        .price{
+            background: #000;
+            color: white;
+            font-weight: bold;
+            width: 150px;
+            border-radius: 8px;
+            margin-left: 0px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .dispro{
+            width: 100%;
+        }
+        .productsearch{
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .back{
+            width: 100px;
+            margin-top: 5px;
+            background: black;
+            border: 1px solid blue;
+            float:left;
+            padding: 5px;
+            border-radius: 8px;
+            color: white;
+        }
+    </style>
+    
+</head>
+<body>
+    <input type="text" class="loop" value="0" hidden>
+    <header>
+        {% include 'header1.html' %}
+    </header>
+    <a href="/"><button class="back">Home</button></a>
+    <div class="productsearch">{{message}}</div>
+    {% for product in products %}
+    <form action="search={{search}}?/" method="POST">
+        {% csrf_token %}
+    <input name="productid"type="text" value="{{product.product_id}}" style="display: none;">
+    <button type="submit" class="dispro">
+    <div class="prodis">
+    <img class="pimg" src="{{product.image.url}}" alt="{{product.name}}" width="150px" height="120px"/>
+    <div class="pname">{{product.name}} <br><span style="font-weight: bold;">Description</span> - {{ product.description}} <br>
+    <span style="font-weight: bold;">Product Type</span> - {{product.product_type}} <br>
+    <span style="font-weight: bold;">Brand</span> - {{product.brand}} <br>
+    {% if product.average_rating != '0' and product.average_rating != None %}
+    <span style="font-weight: bold;">Rating -- {{product.average_rating}} / 5</span>
+    <div class="st">
+        {% load my_filter %}
+        {% if product.average_rating|to_float <= 1.6 %}
+        <span style='color: rgb(236, 92, 48);' >★</span><span>☆☆☆☆</span>
+        {% load my_filter %}
+        {% elif product.average_rating|to_float <= 2.6 %}
+        <span style='color: rgb(251, 138, 0);'>★★</span><span>☆☆☆</span>
+        {% load my_filter %}
+        {% elif product.average_rating|to_float < 3.6 %}
+        <span style='color: rgb(249, 193, 39);'>★★★</span><span>☆☆</span>
+        {% load my_filter %}
+        {% elif product.average_rating|to_float < 4.6 %}
+        <span style='color: rgb(247, 247, 2);'>★★★★</span><span>☆</span>
+        {% load my_filter %}
+        {% elif product.average_rating|to_float <= 5 %}
+        <span style='color: rgb(92, 247, 2);'>★★★★★</span>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% if product.discount != '0' %}
+        <span style="font-weight: bold;text-decoration: underline;">Exclusive Discount of {{product.discount}}% limited offer.</span>
+    {% endif %}
+    </div>
+    <div class="price">
+        {% load my_filter %}
+        {% if product.discount != '0' %}
+        <span style="text-decoration: line-through;">&#8377; {{product.price}}</span>
+        &nbsp;&nbsp;&#8377; {{ product.price|discount:product.discount }}
+        {% else %}
+        &#8377; {{product.price}}
+        {% endif %}
+    </div>
+    </div>
+    </button>
+    </form>
+    {% endfor %}
+    <div class="blurbg">
+        <div class="message">
+            <button class="cross" onclick="signin_direct(1)">&#10006;</button>
+            <p>You are not Login. You need to Login to access this feature.</p>
+            <a href="signin/"><button class="signin">Sign in &#8594;</button></a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop -- Feedback</title>
+    <style>
+        body{
+            background: #000;
+            color: white;
+        }
+        .mess{
+            font-weight: bold;
+            font-size: 18px;
+            float: left;
+            width: 80%;
+            text-align: center;
+        }
+        .contain{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message{
+            width: 300px;
+            height: 200px;
+        }
+        .send{
+            width: 100px;
+            height: 40px;
+            border-radius: 15px;
+            background: rgb(30, 255, 30);
+            box-shadow: 2px 3px 8px white;
+        }
+        .back{
+            width: 60px;
+            height: 30px;
+        } 
+        footer{
+            position: fixed;
+            bottom: 0px;
+            width: 100%;
+        }
+        .send:active{
+            transform: scale(0.97);
+        }              
+    </style>
+</head>
+<body>
+    <div class="head"><div class="mess">You can send mail or send any query related issue / problem.</div><a href="/bussinessPage/{{owner.id}}"><button  class="back">Back</button></a></div>
+    <br><br>
+    <div style="color: rgb(148, 4, 4);background: rgb(255, 166, 158);text-align: center;">
+        {% if messagef != None and messagef != "" %}
+        {{messagef}}
+        {% endif %}
+    </div>
+    <div style="color: rgb(2, 101, 9);background: rgb(145, 230, 135);text-align: center;">
+        {% if messages != None and messages != "" %}
+        {{messages}}
+        {% endif %}
+    </div>  <br><br>
+    <div class="contain">
+    <form action="/bussinessPage/{{owner.id}}/issue" method="post">
+        {% csrf_token %}
+        <textarea name="query" class="message" placeholder="Write your Query........."></textarea><br><br>
+        <button type="submit" class="send">Send</button>
+    </form>
+    </div>
+    <footer>
+        {% include 'footer1.html'%}
+    </footer>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop -  {{user.name}} Details</title>
+    <style>
+        body{
+            background: #000;
+            color: white;
+        }
+        .mess{
+            width: 85%;
+            text-align: center;
+            float: left;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .cont{
+            display: flex;
+            justify-content: end;
+        }
+        .line{
+            border: 2px solid white;
+        }
+        .details{
+            margin-left: 50px;
+            
+        }
+        input{
+            width: 290px;
+            height: 40px;
+            border-radius: 15px;
+            padding-left: 20px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        textarea{
+            padding: 10px;
+            border-radius: 10px;
+            width: 290px;
+        }
+        .back{
+            height: 30px;
+            font-weight: bold;
+            background: white;
+        }
+        .update{
+            height: 40px;
+            width: 120px;
+            background: rgb(2, 252, 2);
+            font-weight: bold;
+            border-radius: 20px;
+            margin-left: 90px;
+        }
+        .center{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="mess">Customer Details</div>
+    <div class="cont"><a href="/home/{{user.id}}"><button class="back">Back</button></a><br></div>
+    <br>
+    <div class="line"></div>
+    <br><br>
+    <form action="/home/{{user.id}}/details" method="post">
+        {% csrf_token %}
+    <div class="center">
+    <div class="details">
+    Customer Name -- <br>
+    <input type="text" name="name" id="cname" value="{{user.customer_name}}"><br><br>
+    Email -- <br>
+    <input type="text" name="email" id="email" value="{{user.email}}" readonly><br><br>
+    User Name -- <br>
+    <input type="text" name="username" id="uname" value="{{user.username}}" readonly><br><br>
+    Phone Number -- <br>
+    <input type="text" name="phone" id="pno" value="{{user.phone_no}}"><br><br>
+    Alternate Number -- <br>
+    <input type="text" name="altphone" id="apno" value="{{user.alternate_no}}"><br><br>
+    Alternate Email -- <br>
+    <input type="text" name="altemail" id="altemail" value="{{user.alternate_email}}"><br><br>
+    <button type="submit" class="update"> Update </button>
+    </div>
+    </div>
+</form>
+<br><br>
+<br><br>
+<footer>
+    {% include 'footer1.html' %}
+</footer>
+</body>
+</html>

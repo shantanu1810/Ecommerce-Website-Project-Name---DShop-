@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dshop - Discount</title>
+    <style>
+        .line{
+            border: 3px solid black;
+        }
+        header{
+            text-align: center;
+        }
+        .text{
+            width: 80%;
+            float: left;
+            font-weight: bold;
+        }
+        .buttoncont{
+            float: left;
+            width: 20%;
+            display: flex;
+            justify-content: end;
+        }
+        .back{
+            width: auto;
+        }
+        .image{
+            float: left;
+            border-radius: 15px;
+            margin-right: 20px;
+        }
+        .prodet{
+            font-weight: bold;
+        }
+        .edit{
+            color: rgb(0, 0, 0);
+            background: rgb(116, 221, 55);
+            font-weight: bold;
+            width: 150px;
+            border-radius: 8px;
+            margin-left: 0px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .block{
+            border: 2px solid black;
+            margin-top: 15px;
+            height: auto;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="text">You Can change the products price by give a new price of the product </div>
+        <div class="buttoncont"><a href="/bussinessPage/{{owner.id}}"><button class="back">Back</button></a></div><br><br>
+        <div class="line"></div> <br><br>
+    </header>
+    <div class="main">
+        {% for product in products %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="block">
+                <input type="text" value="{{product.product_id}}" name="productid" hidden>
+                <img class="image" src="{{product.image.url}}" alt="{{product.name}}" height="100px" width="100px">
+                <div class="prodet">
+                    ID - {{product.product_id}} <br>
+                    Product Name -- {{product.name}} <br>
+                    Price (in Rupees INR) -- {{product.price}} <br>
+                    Discount (in Percentage %) -- {{product.discount}}%<br>
+                    New Discount -- <input type="text" name="discount" class="changevalue" value=" ">
+                </div><br><br>
+                <button type="submit" class="edit">Update</button>
+            </div>
+        </form>
+        {% endfor %}
+    </div>
+</body>
+</html>

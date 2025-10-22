@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .new{
+            background: yellow;
+            padding: 10px;
+            border: 2px solid blue;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        .complete{
+            background: green;
+            padding: 10px;
+            border: 2px solid blue;
+            border-radius: 10px;
+            font-weight: bold;
+            color: white;
+        }
+        .cancel{
+            background: red;
+            color: white;
+            padding: 10px;
+            border: 2px solid blue;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        .ongo{
+            background: blue;
+            color: white;
+            padding: 10px;
+            border: 2px solid blue;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        header{
+            position: relative;
+            height: 60px;
+        }
+        table,td{
+            border: 2px solid black;
+        }
+        td{
+            padding: 5px;
+        }
+        .back{
+            position: absolute;
+            top:0;
+            right: 0;
+            background: #000;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+        }
+        .back:active{
+            transform: scale(0.94);
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    {% load my_filter %}
+    <header>
+        <a href="/bussinessPage/{{owner.id}}/ProductsOrderStatus"><button class="back">Back</button></a>
+    </header>
+    {% if not n and not c and not o and not can%}
+    Yet there is no order on this product
+    {% endif %}
+    {% if n %}
+    <div class="new">
+    New Orders <br>
+    <hr>
+    {% for order,cid in new %}
+    <form action="/bussinessPage/{{owner.id}}/ProductsOrderStatus/productid{{product.product_id}}/manage" method="post">
+        {% csrf_token %}
+        <input type="text" value="{{cid.0}}" name="cid" hidden>
+        <input type="text" value="{{product.product_id}}" name="pid" hidden>
+        <input type="text" value="{{cid.1}} {{cid.2}}" name="dt" hidden>
+        <input type="text" value="{{order.0}}" name="quantity" hidden>
+        <input type="text" value="{{order.1}}" name="total" hidden>
+        <input type="text" value="{{order.2}}" name="pay" hidden>
+        <input type="text" value="{{order.3}}" name="status" hidden>
+        <input type="text" value="{{order|slice:'4'}}" name="address" hidden>
+        <input type="text" value="confirm" name="operation" hidden>
+        <div class="contain">
+            {{ forloop.counter }}
+        <table>
+            <thead>
+                <tr>
+                    <td>Quantity</td>
+                    <td>Total Price</td>
+                    <td>Payment Mode</td>
+                    <td>Date</td>
+                    <td>Time</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{order.0}}</td>
+                    <td>{{order.1}}</td>
+                    <td>{{order.2}}</td>
+                    <td>{{cid.1}}</td>
+                    <td>{{cid.2}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div><br>
+        <button type="submit">Confirme Order and Dispatch</button>
+    </form>
+    <form action="/bussinessPage/{{owner.id}}/ProductsOrderStatus/productid{{product.product_id}}/manage" method="post">
+        {% csrf_token %}
+        <input type="text" value="{{cid.0}}" name="cid" hidden>
+        <input type="text" value="{{product.product_id}}" name="pid" hidden>
+        <input type="text" value="{{cid.1}} {{cid.2}}" name="dt" hidden>
+        <input type="text" value="{{order.0}}" name="quantity" hidden>
+        <input type="text" value="{{order.1}}" name="total" hidden>
+        <input type="text" value="{{order.2}}" name="pay" hidden>
+        <input type="text" value="{{order.3}}" name="status" hidden>
+        <input type="text" value="{{order|slice:'4'}}" name="address" hidden>
+        <input type="text" value="cancel" name="operation" hidden>
+        <button type="submit">Cancel</button>
+    </form>
+    {% endfor %}
+    </div>
+    {% endif %}
+    {% if o %}
+    <div class="ongo">
+    Ongoing Orders <br>
+    <hr>
+    {% for order,cid in ongo %}
+        <div class="contain">
+            {{ forloop.counter }}
+        <table>
+            <thead>
+                <tr>
+                    <td>Quantity</td>
+                    <td>Total Price</td>
+                    <td>Payment Mode</td>
+                    <td>Date</td>
+                    <td>Time</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{order.0}}</td>
+                    <td>{{order.1}}</td>
+                    <td>{{order.2}}</td>
+                    <td>{{cid.1}}</td>
+                    <td>{{cid.2}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div><br>
+        <form action="/bussinessPage/{{owner.id}}/ProductsOrderStatus/productid{{product.product_id}}/manage" method="post">
+            {% csrf_token %}
+        <input type="text" value="{{cid.0}}" name="cid" hidden>
+        <input type="text" value="{{product.product_id}}" name="pid" hidden>
+        <input type="text" value="{{cid.1}} {{cid.2}}" name="dt" hidden>
+        <input type="text" value="{{order.0}}" name="quantity" hidden>
+        <input type="text" value="{{order.1}}" name="total" hidden>
+        <input type="text" value="{{order.2}}" name="pay" hidden>
+        <input type="text" value="{{order.3}}" name="status" hidden>
+        <input type="text" value="{{order|slice:'4'}}" name="address" hidden>
+        <input type="text" value="cancel" name="operation" hidden>
+        <button type="submit">Cancel</button>
+    </form>
+    <form action="/bussinessPage/{{owner.id}}/ProductsOrderStatus/productid{{product.product_id}}/manage" method="post">
+        {% csrf_token %}
+        <input type="text" value="{{cid.0}}" name="cid" hidden>
+        <input type="text" value="{{product.product_id}}" name="pid" hidden>
+        <input type="text" value="{{cid.1}} {{cid.2}}" name="dt" hidden>
+        <input type="text" value="{{order.0}}" name="quantity" hidden>
+        <input type="text" value="{{order.1}}" name="total" hidden>
+        <input type="text" value="{{order.2}}" name="pay" hidden>
+        <input type="text" value="{{order.3}}" name="status" hidden>
+        <input type="text" value="{{order|slice:'4'}}" name="address" hidden>
+        <input type="text" value="delivered" name="operation" hidden>
+        <button type="submit">Delivered</button>
+    </form>
+    {% endfor %}
+    </div>
+    {% endif %}
+    {% if c %}
+    <div class="complete">
+    Completed Orders <br>
+    <hr>
+    {% for order,cid in completed %}
+    <div class="contain">
+        {{ forloop.counter }}
+        <table>
+            <thead>
+                <tr>
+                    <td>Quantity</td>
+                    <td>Total Price</td>
+                    <td>Payment Mode</td>
+                    <td>Date</td>
+                    <td>Time</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{order.0}}</td>
+                    <td>{{order.1}}</td>
+                    <td>{{order.2}}</td>
+                    <td>{{cid.1}}</td>
+                    <td>{{cid.2}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div><br>
+    {% endfor %}
+    </div>
+    {% endif %}
+    {% if can %}
+    <div class="cancel">
+    Cancel Orders <br>
+    <hr>
+    {% for order,cid in cancel %}
+        <div class="contain">
+            {{ forloop.counter }}
+        <table>
+            <thead>
+                <tr>
+                    <td>Quantity</td>
+                    <td>Total Price</td>
+                    <td>Payment Mode</td>
+                    <td>Date</td>
+                    <td>Time</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{order.0}}</td>
+                    <td>{{order.1}}</td>
+                    <td>{{order.2}}</td>
+                    <td>{{cid.1}}</td>
+                    <td>{{cid.2}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div><br>
+    {% endfor %}
+    </div>
+    {% endif %}
+</body>
+</html>

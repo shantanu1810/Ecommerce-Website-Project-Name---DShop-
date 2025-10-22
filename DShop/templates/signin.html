@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop - Sign in</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="aboutus">
+            <a href="/" ><button class="back">Back</button></a>
+        </div>
+        <div class="logo">
+           <a href="/about">  <img src="{% static 'images/LogoName.png' %}" alt="DShop"></a>
+        </div>
+    </header>
+
+    <main>
+        <div class="signin">
+            <h1>Signing in to DShop</h1>
+
+        <div class="create_account">
+                 <p>New to DShop?</p>
+            <a class="effect" href="/register/" >Create account</a>
+        </div>
+        <form action="/signin/" method="post">
+        {% csrf_token %}
+         <div class="inputusername">
+            <input type="text" placeholder="Email or username" id="username" name="username_login" required><br><br>
+            <input type="Password" placeholder="Password" id="username" name="password" required>
+         </div>
+         <br>
+         <div style="font-weight: bold;align-items: center;">Bussiness Account? <input type="checkbox" name="Bussiness_account" style="transform: scale(1.5);margin-left: 10px;"> </div>
+         <div class="button ">
+            <button  id="btn" type="submit">Continue</button>
+         </div>
+         </form>
+         <div class="line">
+           <div class="horizontal_line"></div> 
+        </div>
+   
+    </main>
+    <br><br>
+    {% include 'footer1.html' %}
+</body>
+</html>

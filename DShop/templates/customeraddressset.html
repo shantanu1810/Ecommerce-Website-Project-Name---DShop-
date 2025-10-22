@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop -- Customer Address</title>
+    <style>
+        body{
+            background: #000;
+            color: white;
+        }
+        .center{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .head{
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            width: 90%;
+            float: left;
+        }
+        .line{
+            border: 2px solid white;
+        }
+        input{
+            width: 320px;
+            height: 40px;
+            border-radius: 20px;
+            padding-left: 20px;
+        }
+        input:focus{
+            background: lightblue;
+            border: 3px solid grey;
+        }
+        .cadd{
+            font-weight: bold;
+            font-size: 20px;
+            color: aqua;
+            width:400px
+        }
+        .save{
+            background: rgb(0, 255, 0);
+            width: 200px;
+            height: 40px;
+            border-radius: 20px;
+            margin-left: 60px;
+        }
+        .btn{
+            display: flex;
+            justify-content: end;
+        }
+        .back{
+            height: 30px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        Set a Current / Accurate Location for deliver purpose
+    </div>
+    <div class="btn"><a href="/home/{{user.id}}"><button class="back">Back</button></a></div><br><br>
+    <div class="line"></div><br><br>
+    <div class="center">
+    <div class="contain">
+    <div class="cadd">
+        Current Addrress <br><br>
+       <span style="color: rgb(253, 184, 184);">
+        {% if user.Address != None and user.Address != "" %}
+        {{user.Address}}
+        {% else %}
+        There is no current Address Available. Please set a address.
+        {% endif %}
+        </span> 
+    </div><br><br><br>
+    <form action="/home/{{user.id}}/addressupdate" method="POST">
+        {% csrf_token %}
+        Road Name -- <br>
+        <input type="text" name="road" value="" ><br><br>
+        Area Details -- <br>
+        <input type="text" name="area" value="" required><br><br>
+        House No. / Name -- <br>
+        <input type="text" name="house" value="" required><br><br>
+        State -- <br>
+        <input type="text" name="state" value="" required><br><br>
+        City -- <br>
+        <input type="text" name="city" value="" required><br><br>
+        Pin Code -- <br>
+        <input type="text" name="pin" value="" required><br><br>
+        <button type="submit" class="save">Save</button>
+    </form>
+    </div>
+    </div>
+    <br><br>
+    <footer>
+        {% include 'footer1.html' %}
+    </footer>
+</body>
+</html>

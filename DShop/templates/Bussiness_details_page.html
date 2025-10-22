@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop - {{owner.bussiness_name}}</title>
+    <style>
+        body{
+            background: lightblue;
+        }
+        .message{
+            font-weight: bold;
+            width: 85%;
+            float: left;
+        }
+        .homepagere{
+            height: auto;
+            width: auto;
+        }
+        .line{
+            border: 2px solid black;
+        }
+        .success{
+            text-align: center;
+            background: rgb(6, 233, 6);
+            padding: 5px;
+        }
+        .fail{
+            text-align: center;
+            background: red;
+            padding: 5px;
+        }
+        .form{
+            font-weight: bold;
+            
+        }
+        input{
+            width: 80%;
+        }
+        .addr{
+            height: 60px;
+        }
+        .saving{
+            margin-left: 35%;
+            background: rgb(3, 174, 3);
+            color: rgb(253, 253, 254);
+            height: 30px;
+            width: 80px;
+        }
+        .cont{
+            display: flex;
+            justify-content: end;
+        }
+    </style>
+</head>
+<body>
+    <div class="message">Hello, You can update and save your Bussiness details before adding any elements</div>
+    <div class="cont"><a href="/bussinessPage/{{owner.id}}"><button class="homepagere">Back</button></a><br><br><br></div>
+    <div class="line"></div>
+    {% if not message_success == "" %}
+    <div class="success">
+        {{message_success}}
+    </div>
+    {% endif %}
+    {% if not message_fail == "" %}
+    <div class="fail">
+        {{message_fail}}
+    </div>
+    {% endif %}
+    <br>
+    <div class="form">
+        <form action="" method="POST">
+            {% csrf_token %}
+            Bussiness Owner Name <br>
+            <input type="text" value="{{owner.owner_name}}" name="ownername" required><br><br>
+
+            Phone Number <br>
+            <input type="text" value="{{owner.phone_no}}" name="phoneno" required><br><br>
+            Email <br>
+            <input type="text" value="{{owner.bussiness_email}}" name="email" readonly><br><br>
+            Address<br>
+            <input type="text" value="{{owner.Address}}" name="address" class="addr"required><br><br>
+            <button type="submit" class="saving">SAVE</button>
+        </form>
+    </div>
+    <br><br><br><br>
+    <footer>
+        {% include 'footer1.html' %}
+    </footer>
+</body>
+</html>

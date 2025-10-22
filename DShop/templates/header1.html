@@ -1,0 +1,20 @@
+
+{% block content %}
+{% load static %}
+<div class="headblock">
+    <div class="topblock">
+        <a href="/signin/"><button class="sign">sign in</button></a> / <a href="register/"><button class="register">register</button></a>
+        <button id="deals" onclick="signin_direct(0);"> deals</button>
+        <button id="gift" onclick="signin_direct(0);"> Gift Card</button>
+        <button id="sell" onclick="signin_direct(0);"> sell</button>
+        <button id="cart" onclick="signin_direct(0);">cart</button>
+    </div>
+    <a href="/about"><div class="box"><img src="{% static 'images/logoName.png' %}" height="60px" width="80px"></div></a>
+    <div class="search">
+    <form action="/" method="POST">
+        {% csrf_token %}
+        <input type="text" class="serachbar" placeholder="Search items, Ex - Shoes, Bags, etc" name="searchitem"><button class="se" type="submit">&#x1F50D;</button>
+    </form>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dshop - Purchase Successful </title>
+    <script>
+        window.history.forward();
+    </script>
+    <Style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 100px;
+        }
+        .main{
+            background-color:rgb(130, 195, 253);
+            padding:50px;
+            border: 10px solid rgb(2, 118, 241);
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .continue{
+            background: black;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+        }
+        .center{
+            display: flex;
+            justify-content: center;
+        }
+        .back{
+            background: #000;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+        }
+        .back:active{
+            transform: scale(0.94);
+            background: white;
+            color: black;
+        }
+    </Style>
+</head>
+<body>
+    <div class="main">
+        <span style="color: green;">{{success}}</span> <br>
+        You can Continue your shopping <br><br>
+        <div style="text-align: center;">Thank You ! </div><br>
+        <div class="center"><a href="/home/{{user.id}}"><button class="back">Continue Shopping</button></a></div>
+    </div>
+</body>
+</html>

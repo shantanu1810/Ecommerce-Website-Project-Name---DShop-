@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop - Orders</title>
+    <style>
+        .heading{
+            position:relative;
+            font-weight: bold;
+            font-size: 19px;
+        }
+        .btn{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+        }
+        .btn1{
+            width: 60px;
+            height: 30px;background: black;
+            color: white;font-weight: bold;
+            box-shadow: 2px 2px 4px grey;
+        }
+        .btn1:active{
+            transform: scale(0.90);
+            background: white;
+            color: black;
+        }
+        .li{
+            border: 2px solid black;
+        }
+        .image{
+            float: left;
+        }
+        .details{
+            height: auto;
+            font-weight: bold;
+        }
+        .order{
+            border: 2px solid black;
+
+        }
+        table,td,th{
+            text-align: center;
+            border: 2px solid black;
+            background: blue;
+        }
+        td,th{
+            padding: 0 10px 0 10px;
+            background: wheat;
+        }
+        .payment{
+            border: 1px solid blue;
+        }
+        .star {
+          font-size: 30px;
+          cursor: pointer;
+        }
+        .one {
+          color: rgb(255, 0, 0);
+        }
+        .two {
+          color: rgb(255, 106, 0);
+        }
+        .three {
+          color: rgb(245, 196, 0);
+        }
+        .four {
+          color: rgb(255, 255, 0);
+        }
+        .five {
+          color: rgb(126, 206, 6);
+        }
+        .rate{
+            margin-left: 200px;
+        }
+        .feedback{
+            width: 250px;
+            height: 50px;
+            resize: none;
+        }
+        .submit{
+            background: greenyellow;
+            width: 80px;
+            margin-left: 80px;
+        }
+    </style>
+    <script>     
+        let stars = document.getElementsByClassName("star");
+        function rating(n) {
+            remove();
+            if (n == 1) 
+            cls = "one";
+            else if (n == 2) 
+            cls = "two";
+            else if (n == 3)
+            cls = "three";
+            else if (n == 4)
+            cls = "four";
+            else if (n == 5)
+            cls = "five";
+            for (let i = 0; i < n; i++) {
+                stars[i].className = "star " + cls;
+            }
+            document.getElementsByClassName('ra')[0].value =n;
+        }
+        // To remove the pre-applied styling
+        function remove() {
+            let i = 0;
+            while (i < 5) {
+                stars[i].className = "star";
+                i++;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="heading">
+        All Order items List 
+    </div>
+    <div class="btn"><a href="/home/{{user.id}}"><button class="btn1">Back</button></a></div>
+    <br>
+    <div class="li"></div><br>
+    <div class="contain">
+        {% for product, detail in products %}
+        <div class="order">
+        <img class="image" src="{{product.image.url}}" alt="image" width="200px" height="200px">
+        <div class="details">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Type</th>
+                    </tr>
+                </thead> 
+                <tbody>
+                    <tr>
+                        <td>
+                            {{product.name}}
+                        </td>
+                        <td>
+                            {{product.product_type}}
+                        </td>
+                    </tr>
+                </tbody><br> 
+            </table>
+            <br>
+            <div class="payment">
+            <span style="color: green;">
+            {% if detail.3 == 'cash' %}
+            Payment Type - Cash on Delivery
+            {% else %}
+            Payment Type - Onine <br>
+            Transaction Id - {{detail.3}}
+            {% endif %}
+            </span>
+            <br>
+            <span style="color: green;">
+            {% if detail.4 == 'd' or detail.4 == 'f' %}
+            Status - Product Delivered <br>
+            
+            </span>
+            {% elif detail.4 == 'c1' %}
+            <span style="color: red;">
+                Status - Order Cancel
+            </span>
+            {% elif detail.4 == 'c2' %}
+            <span style="color: red;">
+                Status - Order Cancel by producer. Sorry for the inconvience.
+            </span>
+            {% elif detail.4 == 'otw' %}
+            <span style="color: blue;">
+                Status - On the Way
+            </span>
+            {% else %}
+            <span style="color: blue;">
+                Status - Order product is released from producer and reached to you as early as possible. Thank you.
+            </span>
+            {% endif %}
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Amount to be Paid</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead> 
+                <tbody>
+                    <tr>
+                        <td>
+                            {{detail.2}}
+                        </td>
+                        <td>
+                            {{detail.1}}
+                        </td>
+                    </tr>
+                </tbody><br> 
+            </table>
+        </div><br>
+        {% load my_filter %}
+        {% if detail.4 == 'otw' or detail.4 == 'A' %}
+        <form action="/home/{{user.id}}/order" method="post">
+            {% csrf_token %}
+            <input type="text" value="cancel" name="operation" hidden>
+            <input type="text" value="{{detail.0}}" name="prdt0" hidden>
+            <input type="text" value="{{detail.1}}" name="prdt1" hidden>
+            <input type="text" value="{{detail.2}}" name="prdt2" hidden>
+            <input type="text" value="{{detail.3}}" name="prdt3" hidden>
+            <input type="text" value="{{detail.4}}" name="prdt4" hidden>
+            <input type="text" value="{{detail.5}} {{detail.6}}" name="prdt5" hidden>
+
+            <input type="text" value="{{detail|slice:'7'}}" name="prdt6" hidden>
+            <button type="submit">Cancel</button>
+        </form>
+        {% elif detail.4 == 'd' %}
+        <form action="/home/{{user.id}}/order" method="post">
+            {% csrf_token %}
+        <div class="rate">
+            <input type="text" value="feedback" name="operation" hidden>
+            <input type="text" value="{{detail.0}}" name="prdt0" hidden>
+            <input type="text" value="{{detail.1}}" name="prdt1" hidden>
+            <input type="text" value="{{detail.2}}" name="prdt2" hidden>
+            <input type="text" value="{{detail.3}}" name="prdt3" hidden>
+            <input type="text" value="{{detail.4}}" name="prdt4" hidden>
+            <input type="text" value="{{detail.5}} {{detail.6}}" name="prdt5" hidden>
+            <input type="text" value="{{detail|slice:'7'}}" name="prdt6" hidden>
+            <span style="text-decoration: underline;font-weight: bold;font-family:Georgia, 'Times New Roman', Times, serif;">Give your feed Back</span> <br>
+            <span onclick="rating(1)" class="star">★</span>
+            <span onclick="rating(2)" class="star">★</span>
+            <span onclick="rating(3)" class="star">★</span>
+            <span onclick="rating(4)" class="star">★</span>
+            <span onclick="rating(5)" class="star">★</span>
+            <input type="text" value="" class="ra" name="rating" hidden required>
+            <br>
+            <textarea name="feedback" class="feedback" placeholder="Give yout feedback......." ></textarea><br>
+            <Button type="submit" class="submit">Submit</Button>
+        </div><br>
+        </form>
+        
+        {% elif detail.4 == 'f' %}
+        <span style="font-size: 19px;font-weight: bold;margin-left: 200px;">Thank You for Feedback.</span>
+        {% endif %}
+    </div>
+    <br>
+        {% endfor %}
+    </div>
+</body>
+</html>

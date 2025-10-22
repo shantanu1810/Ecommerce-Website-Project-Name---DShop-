@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop - Bussiness</title>
+    <style>
+        .headbuttons{
+            width: 31.33%;
+            border: none;
+            height: 30px;
+            font-weight: bold;
+            float: left;
+            margin: 1%;
+        }
+        .headbuttons:hover{
+            background: #407be8;
+            color: white;
+        }
+        .headbuttons:active{
+            transform: scale(0.97);
+        }
+        .line{
+            border: 2px solid black;
+            margin-top: 10px;
+        }
+        .products{
+            text-align: center;
+            font-weight: bold;
+        }
+        .manage{
+            height: 50px;
+            width:200px;
+            margin: 10px;
+            font-weight: bold;
+            border: 2px solid black;
+        }
+        #remove{
+            color: white;
+            background: red;
+        }
+        #changepri{
+            background: rgb(4, 189, 4);
+            color: white;
+        }
+        #changepri:hover{
+            background: rgb(4,159,4,1);
+        }
+        #remove:hover{
+            background: rgb(180,0,0);
+        }
+        .manage:active{
+            transform: scale(0.96);
+        }
+        .box{
+            border: none;
+            background: white;
+        }
+        .logout{
+            position: absolute;
+            right: 5px;
+            top: 10px;
+            width: 100px;
+            height: 30px;
+            font-weight: bold;
+            background: rgb(192, 2, 2);
+            color: white;
+            box-shadow: 2px 3px 4px grey;
+        }
+        .logout:hover{
+            background: red;
+        }
+        .logout:active{
+            transform: scale(0..97);
+        }
+        .manage:hover{
+            background: #407be8;
+            color: white;
+        }
+        #rating{
+            background-color: yellow;
+        }
+        #rating:hover, #produc:hover{
+            background: #407be8;
+            color: white;
+        }
+        #produc{
+            background: skyblue;
+        }
+        .text{
+            text-align: center;
+            font-weight: bold;
+            font-size: 19px;
+        }
+    </style>
+    {% load static %}
+</head>
+<body>
+    <button class="box"><img src="{% static 'images/logoName.png' %}" height="60px" width="80px" alt="Logo"></button><div class="text">DShop  is a Digital platform where you can directly sell your products</div>
+    <br><br>
+    <form action="/bussinessPage/{{owner.id}}" method="post">
+        {% csrf_token %}
+    <input type="text" value="logout" name="requesting" style="display: none;">
+    <button type="submit" class="logout">Logout</button>
+    </form>
+    <div class="main">
+        <a href="/bussinessPage/{{owner.id}}/ProductsOrderStatus"><button class="headbuttons">Sell Details</button></a>
+        <a href="/bussinessPage/{{owner.id}}/add_product"><button class="headbuttons">Add Product</button></a>
+        <a href="/bussinessPage/{{owner.id}}/details"><button class="headbuttons">Bussiness Details</button></a>
+    </div>
+    <br>
+    <br>
+    <div class="line"></div>
+    <div class="products">
+        <p  style="font-size: 19px;text-decoration: underline;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Hi {{owner.bussiness_name}} Owner, You can access your products from here. </p><br>
+        <a href="/bussinessPage/{{owner.id}}/products"><button class="manage" id="produc">Manage Products</button></a>
+        <a href="/bussinessPage/{{owner.id}}/discount"><button class="manage">Discounts on Products</button></a>
+        <a href="/bussinessPage/{{owner.id}}/changeprice"><button class="manage" id="changepri">Change Prices</button></a>
+        <a href="/bussinessPage/{{owner.id}}/remove"><button class="manage" id="remove">Delete/Remove products</button></a>
+        <a href="/bussinessPage/{{owner.id}}/Products=rating"><button class="manage" id="rating">Rating on Products</button></a>
+        <a href="/bussinessPage/{{owner.id}}/issue"><button class="manage" >Issue/Problems</button></a>
+    </div>
+    <br><br><br>
+        <footer  style="position: fixed;bottom: 0;width: 100%;">
+        {% include 'footer1.html' %}
+    </footer>
+</body>
+</html>

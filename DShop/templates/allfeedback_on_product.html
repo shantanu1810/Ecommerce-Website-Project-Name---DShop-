@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop - {{product.product_id}} feedback</title>
+    <style>
+        .feed{
+            background: lightblue;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% load my_filter %}
+    <header>
+        <button class="back" onclick="history.back()">Back</button>
+        <br><br>
+        <hr>
+    </header>
+    <ol>
+    {% for i in feed %}
+    <li><div class="feed">Rating -- {{i.0}} / 5
+    <br> 
+    Feedback message -- {{ i|substring:2 }}</div></li>
+     <br>
+    {% endfor %}
+    </ol>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop - {{owner.bussiness_name}}</title>
+    <style>
+        h2{
+            text-align: center;
+        }
+        .line{
+            border:2px solid black;
+        }
+        .prodis{
+            border: 2px solid blue;
+            margin-top: 10px;
+            border-radius: 10px;
+            height: auto;
+            text-align: left;
+        }
+        .pimg{
+            padding-right: 10px;
+            border-radius: 10px;
+            float: left;
+        }
+        .pname{
+            margin: 10px;
+        }
+        .price{
+            background: #000;
+            color: white;
+            font-weight: bold;
+            width: 150px;
+            border-radius: 8px;
+            margin-left: 0px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .dispro{
+            width: 100%;
+        }
+        .productsearch{
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .back{
+            width: 100px;
+            margin-top: 5px;
+            background: black;
+            border: 1px solid blue;
+            float:left;
+            padding: 5px;
+            border-radius: 8px;
+            color: white;
+        }
+        .heading{
+            width: 90%;
+            font-weight: bold;
+            font-size: 20px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="heading">{{owner.bussiness_name}} all Products that are available in DShop</div> 
+    <a href="/bussinessPage/{{owner.id}}"><Button style="height: 30px;width:auto;font-weight: bold;">Back</Button></a><br><br>
+    <div class="line"></div><br><br>
+    {% for product in products %}
+    <div class="prodis">
+    <img class="pimg" src="{{product.image.url}}" alt="{{product.name}}" width="150px" height="120px"/>
+    <div class="pname"><span style="font-weight: bold;">Product ID</span> -- {{product.product_id}} <br>
+    <span style="font-weight: bold;">Product Name</span> -- {{product.name}} <br><span style="font-weight: bold;">Description</span> - {{ product.description}} <br>
+    <span style="font-weight: bold;">Product Type</span> -- {{product.sub_type}}, {{product.product_type}}<br>
+    <span style="font-weight: bold;">Brand</span> -- {{product.brand}}
+    </div><br><br>
+    <div class="price">
+        Price -- &#8377; {{product.price}}
+    </div>
+    </div>
+    {% endfor %}
+</body>
+</html>

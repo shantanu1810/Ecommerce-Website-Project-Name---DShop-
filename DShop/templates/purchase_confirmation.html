@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop -- Purchase</title>
+    <style>
+        .details{
+            width: 45%;
+            padding: 10px;
+            border: 2px solid black;
+            margin-left: 2%;
+            border-radius: 10px;
+            box-shadow: 2px 2px 4px black;
+        }
+        header{
+            background: blue;
+            padding:20px;
+        }
+        .back{
+            float: left;
+            height: 30px;
+        }
+        .messag{
+            margin-left: 80px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .product{
+            width: 43%;
+            padding: 10px;
+            border: 2px solid black;
+            margin-left: 2%;
+            position: absolute;
+            right: 10px;
+            top: 105px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 4px black;
+        }
+        .name{
+            width: 100%;
+        }
+        .contain{
+            width: 48%;
+            border: 1px  solid black;
+            margin-top: 5px;
+            overflow: hidden;
+            display: inline-block;
+            font-weight: bold;
+        }
+        .address{
+            width: 100%;
+            border: 1px  solid black;
+            margin-top: 5px;
+            overflow: hidden;
+            font-weight: bold;
+        }
+        .image{
+            display: inline;
+            float: left;
+        }
+        .subd{
+            height: 100px;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+        }
+        .quant{
+            width: 100%;
+            height: 100%;
+            padding-top: 8px;
+            text-align: center;
+        }
+        .con{
+            width: 48%;
+            border: 1px  solid black;
+            margin-top: 5px;
+            overflow: hidden;
+            display: inline-block;
+            font-weight: bold;
+        }
+        .amount{
+            width: 48%;
+            border: 1px solid black;
+            display: inline-block;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            text-align: center;
+        }
+        .in{
+            width:46%;
+            padding-top: 6px;
+            padding-bottom: 3px;
+            text-align: center;
+        }
+        .gifts{
+            margin: 10px;
+            padding: 20px;
+            margin-left: 2%;
+            border: 2px solid black;   
+            font-weight: bold;
+            font-size: 17px;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;         
+            border-radius: 10px;
+            box-shadow: 2px 4px 6px black;
+        }
+        .submitting{
+            display: flex;
+            justify-content: center;
+        }
+        .placeorder{
+            width: 200px;
+            height: 40px;
+            border-radius: 20px;
+            background: rgb(3, 248, 3);
+            font-weight: bold;
+            font-size: 17px;
+        }
+        .placeorder:hover{
+            color: white;
+            background: green;
+        }
+        .placeorder:active{
+            transform: scale(0.94);
+        }
+        .back{
+            background: #000;
+            color: white;
+            font-weight: bold;
+            padding: 5px;
+        }
+        .back:active{
+            transform: scale(0.94);
+            background: white;
+            color: black;
+        }
+    </style>
+    <script>
+        let originalprice=0;
+        let apply_gift=0;
+        function assign(amt){
+            originalprice=amt;
+        }
+        function totalamount(){
+            apply_gift=0;
+            const c=document.getElementsByClassName('quant')[0];
+            quantity=c.value;
+            const d=document.getElementsByClassName('price')[0];
+            price=d.innerHTML;
+            price=parseInt(price)
+            total=price*quantity;
+            document.getElementsByClassName('in')[0].value=total;
+            originalprice=total;
+        }
+
+        function remove(id,i){
+            document.getElementsByClassName('in')[0].value=originalprice;
+            document.getElementsByClassName('gif')[i-1].style.background="White"
+            apply_gift=0;
+            document.getElementsByClassName('offerid')[i-1].value="";
+        }
+
+        function apply(id,i){
+            if(id==apply_gift){
+                remove(id,i)
+                return;
+            }
+            else{
+                total=document.getElementsByClassName('in')[0].value;
+                if(apply_gift!=0){
+                    remove(apply_gift,i);
+                }
+                const s=document.getElementsByClassName('amt')[i-1].value;
+                console.log(s)
+                first=s.substring(0,1);
+                if(first=='R'){
+                    let c=document.getElementsByClassName('condition')[i-1].value;
+                    let d=c.substring(0,1);
+                    console.log(first)
+                    if(d=='A'){
+                        let amt=parseInt(c.substring(1))
+                        total=parseInt(total);
+                        if(total<amt){
+                            return
+                        }else{
+                            document.getElementsByClassName('in')[0].value=total-parseInt(s.substring(1))
+                        }
+                    }else{
+                        document.getElementsByClassName('in')[0].value=total-parseInt(s.substring(1))
+                    }
+                }else if(first=='P'){
+                    let c=document.getElementsByClassName('condition')[i-1].value;
+                    let d=c.substring(0,1);
+                    if(d=='A'){
+                        let amt=parseInt(c.substring(1))
+                        total=parseInt(total);
+                        if(total<amt){
+                            return
+                        }else{
+                            document.getElementsByClassName('in')[0].value=total-(parseInt(s.substring(1)*total/100));
+                        }
+                    }else{
+                        document.getElementsByClassName('in')[0].value=total-(parseInt(s.substring(1)*total/100));
+                    }
+                }
+                p=i;
+                apply_gift=id
+                document.getElementsByClassName('offerid')[0].value=toString(id);
+                console.log(document.getElementsByClassName('offerid')[0].value)
+                document.getElementsByClassName('gif')[i-1].style.background="yellow"
+            }
+        }
+        document.getElementById('DFrom').addEventListener('submit',
+            function(event){
+                event.preventDefault();
+            }
+        );
+    </script>
+{% load my_filter %}
+</head>
+<body onload="assign('{{ product.price|discount:product.discount }}')">
+    <header>
+    <button class="back" onclick="history.back()">Back</button>
+    <div class="messag">Purchase Product</div>
+    </header>
+    <br><br>
+    <div class="details">
+        <span style="font-weight: bold;">Basic Details</span><br>
+        <hr>
+        <form action="/home/{{user.id}}/purchase/{{product.product_id}}" method="post" id="DFrom">
+            {% csrf_token %}
+        <div class="contain">
+        {% if user.customer_name != "" or user.customer_name != None %}
+        Name <br>
+        <input type="text" name="customername" class="name" value="{{user.customer_name}}"  required>
+        {% else %}
+        Name <br>
+        <input type="text" name="customername" class="name" value=""  required>
+        {% endif %}
+        </div>
+        <div class="contain">
+        {% if user.phone_no != "" or user.phone_no != None %}
+        Phone No. <br>
+        <input type="text" class="name" value="{{user.phone_no}}" name="phone" required>
+        {% else %}
+        phone_no <br>
+        <input type="text" class="name" value="" name="phone"  required>
+        {% endif %}
+        </div>
+        <div class="contain">
+        {% if user.email != "" or user.email != None %}
+        Email <br>
+        <input type="text" class="name" value="{{user.email}}" readonly required>
+        {% else %}
+        Email <br>
+        <input type="text" class="name" value=""  required>
+        {% endif %}
+        </div>
+        <hr>
+        <span style="font-weight: bold;">Address</span><br>
+        <hr>
+        <br>
+        <div class="address">
+        {% if user.Address != "" or user.Address != None %}
+        Address<br>
+        <input type="text" name="address" class="name" value="{{user.Address}}"  required>
+        {% else %}
+        Address<br>
+        <input type="text" name="address" class="name" placeholder="Please Enter you Address for delivery"  required>
+        {% endif %}
+        </div>
+    </div>
+    <div class="product">
+        <span style="font-weight: bold;">Order summary</span><br>
+        <hr>
+        
+        <span style="font-weight: bold;">Product</span><br>
+        <hr>
+        
+        <img class="image" src="{{product.image.url}}" alt="{{product.product_id}}" height="100px"  width="100px">
+        <div class="subd">
+            <span style="font-size: 18px;  font-weight: bold;">{{product.name}} </span><br><br>
+        </div>
+        <hr>
+        
+        <div class="con">
+            <span style="  font-weight: bold;margin-left: 45%;">Price </span><br>
+            <hr>
+            <span class="price" style=" font-weight: bold;margin-left: 48%;">{{ product.price|discount:product.discount }}</span><br>
+        </div>
+        <div class="contain">
+            <div style=" font-weight: bold;padding-bottom: 8px;text-align: center;">Quantity </div>
+        <input class="quant" name="qua" type="number" max="30" min="1" value=1 onchange="totalamount()" onkeyup="totalamount()"></div><br>
+        <br>
+        <input name="offerid" class="offerid" type="text" value="" hidden>
+        <div  class="amount">
+            Total Amount 
+        </div>
+        <input name="finalamount" class="in" type="text" value="{{ product.price|discount:product.discount }}"  readonly>
+    </div><br><br><br><br>
+    <div class="submitting"><Button class="placeorder" type="submit">Place Order</Button></div>
+    </form>
+    <div class="gifts">
+        Available gifts
+        <hr>
+        {% for g in gifts %}
+        {{forloop.counter}}
+        <input class="condition" type="text" value="{{g.condition}}" hidden>
+        <input class="amt" type="text" value="{{g.discount_amount}}" hidden>
+        <button onclick="apply('{{g.OfferID}}','{{forloop.counter}}');" class="gif">{{g.name}}</button> <br>
+        {% endfor %}
+    </div>
+</body>
+</html>

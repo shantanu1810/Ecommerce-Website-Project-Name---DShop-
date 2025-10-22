@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  {% load static %}
+  <script src="{% static 'js/app.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+</head>
+<body>
+  <header>
+    <div class="con">
+    <div class="logo">
+      <a href="/about">  <img src="{% static 'images/LogoName.png' %}" alt="DShop" width="200px" height="150px"></a>
+    </div>
+    </div>
+  </header>
+  <main>
+    <div class="aboutus">
+      <a href="/"><button class="back">Back</button></a><br><br>
+       <div class="message">Already have an account? </div>
+       <a href="/signin/"> Sign in</a><br><br>
+       <div class="heading">Create an Account</div><br>
+       <button class="paccount" onclick="account(0)">Presonal Account</button><button class="baccount" onclick="account(1)">Bussiness Account</button>
+    </div>
+  </main>
+  <div class="personala">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input type="text" name="account" value="Personal" hidden>
+    <div class="pa">
+    <label for="username">Please enter your name</label><br>
+    <input type="text" placeholder="User name" name="username" required><br><br>
+    <label for="email">Please enter your email</label><br>
+    <input type="text" placeholder="Email" name="email" required><br><br>
+    <label for="password">Please enter password</label><br>
+    <input type="password" placeholder="password" name="password" required><br><br><br>
+    <button class="create" type="submit">Create Account</button>
+    </div>
+    </form>
+  </div>
+  <div class="personalb">
+    <form action="" method="POST">
+      {% csrf_token %}
+    <div class="pa">
+      <input type="text" name="account" value="bussiness" hidden>
+    <label for="username">Please enter bussiness name</label><br>
+    <input type="text" placeholder="User name" name="bussinessname" required><br><br>
+    <label for="email">Please enter bussiness email</label><br>
+    <input type="text" placeholder="Email" name="email" required><br><br>
+    <label for="password">Please enter password</label><br>
+    <input type="password" placeholder="password" name="password" required><br><br><br>
+    <button class="create" type="submit">Create Account</button>
+    </div>
+    </form>
+  </div>
+  <footer>
+    {% include 'footer1.html' %}
+  </footer>
+</body>
+</html>

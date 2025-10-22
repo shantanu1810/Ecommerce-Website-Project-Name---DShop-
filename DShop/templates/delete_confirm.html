@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: lightblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+        .image{
+            width: 200px;
+            height: 200px;
+        }
+        .delete{
+            background: rgb(227, 1, 1);
+            color: white;
+            float: left;
+            width: 80px;
+            margin: 20px;
+            margin-left: 50px;
+            font-weight: bold;
+            height: 30px;
+            border: 2px solid red;
+            border-radius: 15px;
+        }
+        .cancel{
+            width: 80px;
+            margin: 20px;
+            font-weight: bold;
+            height: 30px;
+            border: 2px solid blue;
+            border-radius: 15px;
+        }
+        .cancel:hover, .delete:hover{
+            background: rgb(89, 111, 234);
+            color: white;
+        }
+        .contain{
+            background: rgb(155, 253, 102);
+            padding: 10px;
+            padding-top: 30px;
+            border-radius: 10px;
+            border: 2px solid green;
+        }
+        .li{
+            border: 2px solid black;
+            width: 100%;
+        }
+        h3{text-align: center;}
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h3>Confirm to Delete Product</h3>
+    <div class="li"></div><br><br>
+       <span style="font-size: 18px;text-decoration: underline;margin-left: 30px;">Product Image</span>  <br><br>
+    <img class="image" src="{{product.image.url}}" alt="{{product.name}}">
+    <br><br>
+    <span style="font-size: 18px;text-decoration: underline;text-align: center;margin-left: 30px;">Product Details</span> <br><br>
+    <div class="details">
+    Product ID -- {{product.product_id}} <br>
+    Product Name -- {{product.name}} <br>
+    Product Price -- {{product.price}} <br>
+    Description -- {{product.description}} <br>
+    Product Type -- {{product.product_type}}, {{product.sub_type}} <br>
+    </div><br><br>
+    <div class="contain">
+    <span style="font-size: 20px;">Are you want to Remove this Product ? </span><br><br>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" value="{{product.product_id}}" name="proid" hidden>
+        <input type="text" value="delete" name="operation" hidden>
+        <button class="delete">Remove</button>
+    </form>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" value="{{product.product_id}}" name="proid" hidden>
+        <input type="text" value="Cancel" name="operation" hidden>
+        <button class="cancel">Cancel</button>
+    </form>
+    </div>
+    </div>
+</body>
+</html>

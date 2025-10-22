@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop - Offers</title>
+    {% load static %}
+    <script src="{% static 'js/home.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/home_css.css' %}">
+    <style>
+        .type{
+            padding: 10px;
+            background: rgb(215, 239, 4);
+            color: rgb(0, 0, 0);
+            margin-top: 10px;
+            font-weight: bold;
+            border-radius: 10px;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+        .head{
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-left: 20%;
+            margin-right: 20%;
+            background: #000;
+            color: white;
+            height: 50px;
+            padding-top: 20px;
+            border-radius: 20px;
+        }
+        .back{
+            background: black;
+            font-weight: bold;
+            color: white;
+            height: 40px;
+            width: 70px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        {% include 'header1.html' %}
+    </header>
+    <br><br>
+    <a href="/"><button class="back">Back</button></a>
+    <br><br>
+    <div class="head">All Exclusive Offers</div><br><br>
+    <div class="offers">
+        <div class="type">On first oder get a flat extra 10% off on the total price</div>
+        <div class="type">Get a premium customer by getting a monthly or yearly gold card and get great deals and high discounts upto 40%</div>
+        <div class="type">Shop frequently so don't miss the chances at all.</div>
+        <div class="type">Get free delivery on products of total cost atleast 800</div>
+        <div class="type">Get offers on grocery products on sale time everyday</div>
+    </div>
+    <div class="blurbg">
+        <div class="message">
+            <button class="cross" onclick="signin_direct(1)">&#10006;</button>
+            <p>You are not Login. You need to Login to access this feature.</p>
+            <a href="signin/"><button class="signin">Sign in &#8594;</button></a>
+        </div>
+    </div>
+</body>
+</html>

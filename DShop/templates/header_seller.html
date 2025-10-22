@@ -1,0 +1,151 @@
+
+{% block content %}
+{% load static %}
+<style>
+    .topblock{
+        position: relative;
+    }
+    #user{
+        position:absolute;
+        right: 0px;
+        border: 2px solid black;
+        border-radius: 50%;
+        color: black;
+        height: 35px;
+        width: 40px;
+        font-size: 20px;
+    }
+    #user:hover{
+        transform: scale(1.1);
+        background: rgb(146, 161, 237);
+    }
+    #user:active{
+        transform: scale(1);
+    }
+    button{
+        background: none;
+        border: none;
+    }
+    #deals,#gift,#cart{
+        font-size: 15px;
+        width: 15%;
+        font-weight: bold;
+        padding-top: 10px;
+        padding-bottom: -15px;
+    }
+    #deals:hover,#gift:hover,#cart:hover{
+        color: blue;
+        transform: scale(1.1);
+    }
+    .search{
+        padding-top: 20px;
+        margin-left: 10px;
+        height: 40px;
+    }
+    .serachbar{
+        width:80%;
+        height: 25px;;
+        margin-left: 3%;
+        border-radius: 10px;
+        border:0.5px solid black;
+    }
+    .box{
+        position: absolute;
+        height: 60px;
+        width: 80px;
+        float: left;
+    }
+    .se{
+        margin-left: 10px;
+        width:30px;
+        font-size: 110%;
+        font-weight: bold;
+    }
+    .se:hover{
+        transform: scale(1.3);
+    }
+    .sc{
+        width: 14%;
+        height: 28px;
+        overflow: hidden;
+        border: 1px solid rgb(88, 106, 223);
+        border-radius: 5px;
+        font-size:60%;
+        font-weight: bold;
+        background: linear-gradient(rgb(85, 224, 239),rgb(113, 169, 233));
+        position: absolute;
+        right: 10px;
+    }
+    .searchingform{
+        position: absolute;
+        left: 130px;
+        width: 60%;
+        float: left;
+    }
+    .user_details{
+        position: absolute;
+        right:0px;
+        top: 40px;
+        width: 300px;
+        height: 1500%;
+        background: rgb(97, 143, 218);
+        border: 2px solid rgb(226, 136, 136);
+        z-index: 1;
+        color: white;
+        display: none;
+    }
+    .user_creditals{
+        width: 80%;
+        text-align: center;
+        font-weight: bold;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 15px;
+        border: 1px solid black;
+        padding:10px 0 10px 0;
+        color: white;
+        background: rgb(60, 60, 218);
+    }
+    .user_creditals:hover{
+        transform: scale(1.05);
+        background: rgb(53, 143, 221);
+    }
+    .user_creditals:active{
+        transform: scale(1);
+        background: white;
+    }
+    #logout{
+        background:  rgb(245, 42, 42);
+    }
+</style>
+<div class="headblock">
+    <div class="topblock">
+        <a href=""><button id="deals">Sell Details</button></a>
+        <a href=""><button id="gift">Products</button></a>
+        <a href=""><button id="cart">Add Products</button></a>
+        <button id="user" onclick="display_user_details()">&#128100;</button>
+        <div class="user_details">
+            Hi, {{user.username}}
+            <br>
+            <br>
+            <hr>
+            <a href=""><button class="user_creditals" >Bussiness Details</button></a><br>
+            <a href=""><button class="user_creditals" >Manage Discounts</button></a><br>
+            <a href=""><button class="user_creditals" >Contact Details</button></a><br>
+            <a href=""><button class="user_creditals" >Feedback</button></a><br>
+            <a href=""><button class="user_creditals" >Products Reviews</button></a><br>
+            <a href=""><button class="user_creditals" ></button></a><br>
+            <a href=""><button class="user_creditals" id="logout">Logout</button></a><br>
+        </div>
+    </div>
+    
+    <hr>
+    <button class="box"><img src="{% static 'images/logoName.png' %}" height="60px" width="80px"></button>
+    <div class="search">
+    <form action="/home/" method="post" class="searchingform">
+        <input type="text" class="serachbar" placeholder="Search items, Ex - Shoes, Bags, etc"><button class="se" type="submit">&#x1F50D;</button>
+    </form>
+    <button class="sc">Search By Category</button>
+    </div>
+</div>
+{% endblock content %}

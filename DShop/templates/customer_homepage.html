@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop - Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/cust_home.css' %}">
+    <script src="{% static 'js/home.js' %}"></script>
+    <script>
+    const images=["{% static 'images/shop1.jpg' %}","{% static 'images/shop2.jpg' %}","{% static 'images/shop3.jpg' %}","{% static 'images/shop4.jpg' %}","{% static 'images/shop5.jpg' %}","{% static 'images/shop6.jpg' %}"];
+    function loadad(){
+        let inde=Math.floor(Math.random()*images.length);
+        const e=document.getElementsByClassName("ads")[0];
+        e.style.backgroundImage='url('+images[inde]+')';
+    }
+     </script>
+    <style>
+        .ads{
+            height:300px;
+            width: 100%;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-color: aquamarine;
+            background-position: center;
+            background-size: 100% 300px;
+        }
+        .items{
+            height: 30px;
+            float: left;
+        }
+        .items:hover{
+            background: rgb(21, 58, 243);
+            color: white;
+        }
+        .items:active{
+            transform: scale(0.95);
+        }
+        .displaynone{
+            display: none;
+        }
+        .productb{
+            float: left;
+        }
+        .co{
+            display: inline-block;
+            background: #000;
+            overflow-x: scroll;
+            white-space: nowrap;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body onload="loadad();">
+    <div class="main">
+    <header>
+        {% include 'header.html' %}
+    </header>
+    <hr>
+    <div class="categories">
+        <form action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="Groceries" name="searchbytype" class="displaynone" hidden>
+            <button class="items" type="submit">Groceries</button>
+        </form>
+        <form action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="Furnitures" name="searchbytype" class="displaynone" hidden>
+            <button class="items" type="submit">Furnitures</button>
+        </form>
+        <form action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="Electronics" name="searchbytype" class="displaynone" hidden>
+            <button class="items" type="submit">Electronics</button>
+        </form>
+        <form action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="Shoes" name="searchbytype" class="displaynone" hidden>
+            <button class="items" type="submit">Shoes</button>
+        </form>
+        <form action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="Cloths" name="searchbytype" class="displaynone" hidden>
+            <button class="items" type="submit">Cloths</button>
+        </form>
+        <form action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="Sports" name="searchbytype" class="displaynone" hidden>
+            <button class="items" type="submit">Sports</button>
+        </form>
+    </div><br><br>
+    <hr>
+    </br>
+    <div class="ads">
+
+    </div>
+    <br>
+    <br>
+    <div class="start_shop">
+        <div class="textfield">
+            <span class="bold">Shopping made easy</span><br>
+            Enjoy realiability, secure deliveries, easy returns, and easily access products you wanted.
+        </div>
+        <div class="shopbutton">
+            <form action="/home/{{user.id}}" method="post">
+                {% csrf_token %}
+                <input type="text" value="all" name="searchbytype" hidden>
+            <button style="color: white;font-weight: bold;" type="submit">Start now</button>
+            </form>
+        </div>
+    </div>
+    <div>
+        <h2>Trending on DShop</h2>
+        <div class="trend">
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="shoe" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item" type="submit"><img class="tre" src="{% static 'images/shoes.jpg' %}" alt="shoes"></button>
+        </form>
+        </div>
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="groceries" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item"  type="submit"><img class="tre" src="{% static 'images/groceries.jpg' %}" alt="groceries"></button>
+        </form>
+        </div>
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="sports" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item"><img class="tre" src="{% static 'images/sports.jpg' %}" alt="Sports items"></button>
+        </form>
+        </div>
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="furniture" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item"><img class="tre" src="{% static 'images/bed.jpg' %}" alt="Bed trend"></button>
+        </form>
+        </div>
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="cloth" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item"><img class="tre" src="{% static 'images/coat.jpg' %}" alt="Cloths"></button>
+        </form>
+        </div>
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="bag" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item"><img class="tre" src="{% static 'images/ladybag.jpg' %}" alt="ladies items"></button>
+        </form>
+        </div>
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="sofa" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item"><img class="tre" src="{% static 'images/chair.jpg' %}" alt="Furnitures"></button>
+        </form>
+        </div>
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="fan" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item"><img class="tre" src="{% static 'images/table_fan_shot_blue.jpg' %}" alt="Table Fan"></button>
+        </form>
+        </div>
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="machine" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item"><img class="tre" src="{% static 'images/washingmachine.jpg' %}" alt="Washing Machine"></button>
+        </form>
+        </div>
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="air cooler" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item"><img class="tre" src="{% static 'images/air_condictioner.jpg' %}" alt="Air condictioner"></button>
+        </form>
+        </div>
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="lamp" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item"><img class="tre" src="{% static 'images/table_lamps_design.jpg' %}" alt="Table lamp"></button>
+        </form>
+        </div>
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="bookshelf" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item"><img class="tre" src="{% static 'images/Bookshelf1.jpg' %}" alt="book shelf"></button>
+        </form>
+        </div>
+        <div class="co">
+        <form class="productb" action="/home/{{user.id}}" method="post">
+            {% csrf_token %}
+            <input type="text" value="fridge" name="searchbytype" class="displaynone" hidden>
+            <button class="trend_item"><img class="tre" src="{% static 'images/fridge_blue_color.jpg' %}" alt="Fridge"></button>
+        </form> 
+        </div>  
+        </div>
+    </div>
+    <br>
+    <br>
+    <h2>Mobile Phones</h2>
+    <div class="phonedisplay">
+        <div class="product"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="One Plus" name="searchbytype" hidden>
+            <button type="submit"><img class="mobile" src="{% static 'images/One_plus_mobile.jpg' %}" alt="1+ Phone"><br>One Plus</button>
+        </form></div>
+        <div class="product"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="Lg mobile" name="searchbytype" hidden>
+            <button type="submit"><img class="mobile" src="{% static 'images/lg_mobile.jpg' %}" alt="LG Phone"><br>LG Q7</button>
+        </form></div>
+        <div class="product"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="S mobile" name="searchbytype" hidden>
+            <button type="submit"><img class="mobile" src="{% static 'images/s_mobile.jpg' %}" alt="S Mobile"><br>S Mobile</button>
+        </form></div>
+        <div class="product"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="samsung" name="searchbytype" hidden>
+            <button type="submit"><img class="mobile" src="{% static 'images/samsung_mobile.jpg' %}" alt="Samsung"><br>Samsung</button>
+        </form></div>
+        <div class="product"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="redmi" name="searchbytype" hidden>
+            <button type="submit"><img class="mobile" src="{% static 'images/redminnote11.jpg' %}" alt="Redmi Note 11"><br>Redmi Note 11</button>
+        </form></div>
+        <div class="product"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="jio mobile" name="searchbytype" hidden>
+            <button type="submit"><img class="mobile" src="{% static 'images/jio_phone.jpg' %}" alt="Jio Phone"><br>Jio Mobile</button>
+        </form></div>
+        <div class="product"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="mobile" name="searchbytype" hidden>
+            <button type="submit"><img class="mobile" src="{% static 'images/new_models.jpg' %}" alt="Models"><br>New Models</button>
+        </form></div>
+    </div>
+    <h2>Brands</h2>
+    <div class="brands">
+        <div class="brand"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="apple" name="searchbytype" hidden>
+            <button type="submit"><img class="brandl" src="{% static 'images/applelogo.jpg' %}" alt="Apple"></button>
+        </form></div>
+        <div class="brand"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="lego" name="searchbytype" hidden>
+            <button type="submit"><img class="brandl" src="{% static 'images/legologo.jpg' %}" alt="lego"></button>
+        </form></div>
+        <div class="brand"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="samsung" name="searchbytype" hidden>
+            <button type="submit"><img class="brandl" src="{% static 'images/samsumglogo.jpg' %}" alt="Samsung"></button>
+        </form></div>
+        <div class="brand"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="lenovo" name="searchbytype" hidden>
+            <button type="submit"><img class="brandl" src="{% static 'images/lenovo.jpg' %}" alt="lenovo"></button>
+        </form></div>
+        <div class="brand"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="playstation" name="searchbytype" hidden>
+            <button type="submit"><img class="brandl" src="{% static 'images/playstationlogo.jpg' %}" alt="playStation"></button>
+        </form></div>
+        <div class="brand"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="puma" name="searchbytype" hidden>
+            <button type="submit"><img class="brandl" src="{% static 'images/pumalogo.jpg' %}" alt="puma"></button>
+        </form></div>
+        <div class="brand"><form action="/home/{{user.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" value="adidas" name="searchbytype" hidden>
+            <button type="submit"><img class="brandl" src="{% static 'images/adidas.jpg' %}" alt="Adidas"></button>
+        </form></div>
+    </div>
+    <br>
+    <div class="accessories">
+        <div class="text_btn"><span style="font-size: 25px;">Endless Accessories at low prices.</span><br>Browse many different products.<br><br>
+            <form action="/home/{{user.id}}" method="POST">{% csrf_token %} <input type="text" value="accessorie" name="searchbytype" hidden><button type="submit" class="acc_btn">Shop now</button></form></div>
+        <div class="photos">
+            <img id="pos1" class="accessories_pic" src="{% static 'images/accessories_bottle.jpg' %}" alt="shoes">
+            <img id="pos2" class="accessories_pic" src="{% static 'images/accessories_glasses.jpg' %}" alt="shoes">
+            <img id="pos3" class="accessories_pic" src="{% static 'images/accessories_gloves.jpg' %}" alt="shoes">
+        </div>
+    </div>
+    <hr>
+    <footer>
+        {% include 'footer1.html' %}
+    </footer>
+    </div>
+</body>
+</html>

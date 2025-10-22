@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <script src="{% static 'js/app.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop - {{product.name}}</title>
+    <style>
+        .dia{
+            background: rgb(0, 255, 0);
+            width: 100%;
+            text-align: center;
+        }
+        .st{
+            font-size: 19px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        {% include 'header.html' %}
+    </header>
+    {% if add != "" %}
+    <div class="dia">{{add}}</div>
+    {% endif %}
+    <button class="back" onclick="history.back()">Back</button>
+    <main class="product-dis">
+        <div class="image-container">
+            <img src="{{product.image.url}}" alt="{{product.name}}_{{product.product_id}}" height="300px" width="300px">
+        </div>
+        <div class="product-details"><span style="font-size: 20px;">{{product.name}}</span>  <br><br>
+            Brand - {{product.brand}} <br><br>
+            Descriptions - <br>
+            {{product.description}} <br><br>
+            {{product.product_type}}, {{product.sub_type}} <br><br>
+            {% load my_filter %}
+            <span style="font-size: 18px;width: 200px;height: 40px;">INR &#8377; {{ product.price|discount:product.discount }}</span><br>
+            {% if product.average_rating != '0' and product.average_rating != None %}
+    <span style="font-weight: bold;font-size: 18px;">Rating -- {{product.average_rating}} / 5</span>
+    <div class="st">
+        {% load my_filter %}
+        {% if product.average_rating|to_float <= 1.6 %}
+        <span style='color: rgb(236, 92, 48);' >★</span><span>☆☆☆☆</span>
+        {% load my_filter %}
+        {% elif product.average_rating|to_float <= 2.6 %}
+        <span style='color: rgb(251, 138, 0);'>★★</span><span>☆☆☆</span>
+        {% load my_filter %}
+        {% elif product.average_rating|to_float < 3.6 %}
+        <span style='color: rgb(249, 193, 39);'>★★★</span><span>☆☆</span>
+        {% load my_filter %}
+        {% elif product.average_rating|to_float < 4.6 %}
+        <span style='color: rgb(247, 247, 2);'>★★★★</span><span>☆</span>
+        {% load my_filter %}
+        {% elif product.average_rating|to_float <= 5 %}
+        <span style='color: rgb(92, 247, 2);'>★★★★★</span>
+        {% endif %}
+    </div>
+    {% endif %}<br><br>
+            <form action="/home/{{user.id}}/search{{search}}/" method="post">
+                {% csrf_token %}
+                <input type="text" value="buy" name="operation" hidden>
+                <input type="text" value="{{product.product_id}}" name="proid" hidden>
+            <button class="buy" type="submit">
+                Buy Now
+            </button>
+            </form><br>
+            <form action="/home/{{user.id}}/search{{search}}/" method="post">
+                {% csrf_token %}
+                <input type="text" value="add" name="operation" hidden>
+                <input type="text" value="{{product.product_id}}" name="proid" hidden>
+            <button class="add_tocart" type="submit">
+                Add to cart
+            </button>
+            </form>
+        </div>
+    </main>
+
+</body>
+
+</html>

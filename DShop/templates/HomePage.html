@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home_css.css' %}">
+    <script src="{% static 'js/home.js' %}"></script>
+    <style>
+        .a1{
+            background-image: url("{% static 'images/shop1.jpg' %}");
+            background-repeat: no-repeat;
+            background-color: aquamarine;
+            background-position: center;
+            background-size: 100% 300px;
+            position:absolute;
+        }
+        .a2{
+            background-image: url("{% static 'images/shop5.jpg' %}");
+            background-repeat: no-repeat;
+            background-color: aquamarine;
+            background-position: center;
+            background-size: 100% 300px;
+            position:absolute;
+        }
+        .a3{
+            background-image: url("{% static 'images/shop3.jpg' %}");
+            background-repeat: no-repeat;
+            background-color: aquamarine;
+            background-position: center;
+            background-size: 100% 300px;
+            position:absolute;
+        }
+        .a4{
+            background-image: url("{% static 'images/shop4.jpg' %}");
+            background-repeat: no-repeat;
+            background-color: aquamarine;
+            background-position: center;
+            background-size: 100% 300px;
+            position:absolute;
+        }
+        .start_shop{
+            position: relative;
+            font-weight: bold;
+            padding: 15px;
+            background: white;
+            border: 1.5px solid black;
+            border-radius: 30px;
+            left:45%;
+            top: 80%;
+        }
+        .advmsg{
+            position:absolute;
+            background: white;
+            padding: 35px;
+            border-radius: 30px;
+            border: 8px double rgb(64, 191, 226);
+            top: 10%;
+            left: 20px;
+            width: 30%;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+        }
+        .get_offers{
+            background: black;
+            width: 160px;
+            padding: 15px;
+            color: white;
+            border-radius: 30px;
+            font-weight: bold;
+            position: absolute;
+            right: 10%;
+            top: 10%;
+        }
+        .ele1{
+            background: #000;
+            font-weight: bold;
+            color: white;
+            width: 150px;
+            padding: 15px;
+            position: absolute;
+            top: 70%;
+            border-radius: 30px;
+        }
+        .buyproducts{
+            position: relative;
+            font-weight: bold;
+            padding: 15px;
+            color: white;
+            background: black;
+            border: 1.5px solid black;
+            border-radius: 30px;
+            left:45%;
+            top: 80%;
+        }
+    </style>
+</head>
+<body onload="display()">
+    <div class="main">
+    <header>
+        {% include 'header1.html' %}
+    </header>
+    <div class="categories">
+        <form action="" method="POST">
+            {% csrf_token %}
+        <input type="text" value="groceries" style="display: none;" name="products_types">
+        <button class="items" type="submit">Groceries</button>
+        </form>
+        <form action="" method="POST">
+            {% csrf_token %}
+        <input type="text" value="Furnitures" style="display: none;" name="products_types">
+        <button class="items" type="submit">Furnitures</button>
+        </form>
+        <form action="" method="POST">
+            {% csrf_token %}
+        <input type="text" value="Electronics" style="display: none;" name="products_types">
+        <button class="items" type="submit">Electronics</button>
+        </form>
+        <form action="" method="POST">
+            {% csrf_token %}
+        <input type="text" method="POST" value="Fashion" style="display: none;" name="products_types">
+        <button class="items" type="submit">Fashion</button>
+        </form>
+        <form action="" method="POST">
+            {% csrf_token %}
+        <input type="text" value="Game" style="display: none;" name="products_types">
+        <button class="items" type="submit">Sports</button>
+        </form>
+        <form action="" method="POST">
+            {% csrf_token %}
+        <input type="text" value="Phones" style="display: none;" name="products_types">
+        <button class="items" type="submit">Phones</button>
+        </form>
+
+    </div></br></br>
+    <div class="ads">
+        <div class="a1">
+            <div class="advmsg">You can get great deals and offers from here start shopping now.</div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" value="shop" style="display: none;" name="shop">
+                <button class="start_shop" type="submit"> Start Shopping</button>
+            </form>
+        </div>
+        <div class="a2">
+            <div class="advmsg">Don't miss the chance grab the exclusive offers and rewards by shopping products and accessories at agffotable cost. <br>Get your offers now!</div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" value="Offers" style="display: none;" name="offers">
+                <button class="get_offers" type="submit">Get Offers</button>
+            </form>
+        </div>
+        <div class="a3">
+            <div class="advmsg">Get Electronics equipments and gadgets at low price and best quality </div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" method="POST" value="Electronic" style="display: none;" name="products_types">
+                <button class="ele1" style="left: 40px;">Electronics</button>
+            </form>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" method="POST" value="phones" style="display: none;" name="products_types">
+                <button class="ele1" style="left: 200px;">Smart Phones</button>
+            </form>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" method="POST" value="watches" style="display: none;" name="products_types">
+                <button class="ele1" style="left: 360px;">Watches</button>
+            </form>
+        </div>
+        <div class="a4">
+            <div class="advmsg">Get the Highest rating products and good quality at low price and without going out to search in multiple places</div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" method="POST" value="Less Cost Products" style="display: none;" name="price">
+                <button class="buyproducts" type="submit">Buy Products Now</button>
+            </form>
+        </div>
+    </div>
+    <div class="ctrl_button">
+        <button class="cb" style="text-align: end;width: 46%;" onclick="moveleft();">&#10094;&#10094;</button>
+        <button class="cb" onclick="condition();">&#9616;&#9616;</button>
+        <button class="cb" style="text-align: left;width: 46%;" onclick="moveright();">&#10095;&#10095;</button>
+    </div>
+    <br>
+    <br>
+    <div>
+        <h3>Trending on DShop</h3>
+        <div class="trend">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" method="POST" value="shoes" style="display: none;" name="Trending">
+                <button class="trend_item" type="submit"><img class="tre" src="{% static 'images/shoes.jpg' %}" alt="shoes"></button>
+            </form>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" method="POST" value="grocrey" style="display: none;" name="Trending">
+                <button class="trend_item" type="submit"><img class="tre" src="{% static 'images/groceries.jpg' %}" alt="groceries"></button>
+            </form>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" method="POST" value="sport" style="display: none;" name="Trending">
+                <button class="trend_item" type="submit"><img class="tre" src="{% static 'images/sports.jpg' %}" alt="Sports items"></button>
+            </form>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" method="POST" value="Bed" style="display: none;" name="Trending">
+                <button class="trend_item"><img class="tre" src="{% static 'images/bed.jpg' %}" alt="Bed trend"></button>
+            </form>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" method="POST" value="cloths" style="display: none;" name="Trending">
+                <button class="trend_item"><img class="tre" src="{% static 'images/coat.jpg' %}" alt="Cloths"></button>
+            </form>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" method="POST" value="bag" style="display: none;" name="Trending">
+                <button class="trend_item"><img class="tre" src="{% static 'images/ladybag.jpg' %}" alt="ladies items"></button>
+            </form>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" method="POST" value="furniture" style="display: none;" name="Trending">
+                <button class="trend_item"><img class="tre" src="{% static 'images/chair.jpg' %}" alt="Furnitures"></button>
+            </form>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input type="text" method="POST" value="machine" style="display: none;" name="Trending">
+                <button class="trend_item"><img class="tre" src="{% static 'images/washingmachine.jpg' %}" alt="Electronics"></button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <h3>BRANDS</h3>
+    <div class="brands">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" method="POST" value="Apple" style="display: none;" name="brand">
+            <button class="brand" type="submit"><img class="brandl" src="{% static 'images/applelogo.jpg' %}" alt="Apple"></button>
+        </form>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" method="POST" value="Lego" style="display: none;" name="brand">
+            <button class="brand"><img class="brandl" src="{% static 'images/legologo.jpg' %}" alt="lego"></button>
+        </form>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" method="POST" value="Samsung" style="display: none;" name="brand">
+            <button class="brand"><img class="brandl" src="{% static 'images/samsumglogo.jpg' %}" alt="Samsung"></button>
+        </form>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" method="POST" value="lenovo" style="display: none;" name="brand">
+            <button class="brand"><img class="brandl" src="{% static 'images/lenovo.jpg' %}" alt="lenovo"></button>
+        </form>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" method="POST" value="Play Station" style="display: none;" name="brand">
+            <button class="brand"><img class="brandl" src="{% static 'images/playstationlogo.jpg' %}" alt="playStation"></button>
+        </form>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" method="POST" value="PUMA" style="display: none;" name="brand">
+            <button class="brand"><img class="brandl" src="{% static 'images/pumalogo.jpg' %}" alt="puma"></button>
+        </form>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" method="POST" value="Adidas" style="display: none;" name="brand">
+            <button class="brand"><img class="brandl" src="{% static 'images/adidas.jpg' %}" alt="Adidas"></button>
+        </form> 
+    </div>
+    <br>
+    <hr>
+    <footer>
+        {% include 'footer1.html' %}
+    </footer>
+    </div>
+    <div class="blurbg">
+        <div class="message">
+            <button class="cross" onclick="signin_direct(1)">&#10006;</button>
+            <p>You are not Login. You need to Login to access this feature.</p>
+            <a href="signin/"><button class="signin">Sign in &#8594;</button></a>
+        </div>
+    </div>
+</body>
+</html>

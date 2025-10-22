@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShop - Cart</title>
+    <style>
+        .line{
+            border: 2px solid black;
+        }
+        .heading{
+            width: 90%;
+            float: left;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        }
+        .btn{
+            width:10%;
+            display: flex;
+            justify-content: end;
+        }
+        .container{
+            width: 100%;
+        }
+        .back{
+            background: rgb(245, 24, 24);
+            font-weight: bold;
+            color: white;
+            height: 30px;
+            width: 80px;
+            border-radius: 15px;
+        }
+        .image{
+            border-top-left-radius: 30px;
+            float: left;
+        }
+        .details{
+            padding-left: 200px;
+            height: 150px;
+        }
+        .pro{
+            height: auto;
+            border: 2px solid black;
+            border-radius: 30px;
+        }
+        .back:hover{
+            background: rgb(254, 99, 99);
+        }
+        .remove, .buy{
+            width: 130px;
+            margin-left: 10px;
+            margin-bottom:10px;
+            font-weight: bold;
+        }
+        .cont{
+            height: 80px;
+            overflow-y: scroll;
+            scrollbar-width: none;
+        }
+        .remove{
+            background: red;
+            color: white;
+            border-radius: 20px;
+        }
+        .remove:active{
+            transform: scale(0.95);
+        }
+        .buy:active{
+            transform: scale(0.95);
+        }
+        .buy{
+            background: #000;
+            color: white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <div class="heading">
+        All Saved Products  
+    </div>
+    <div class="btn"><a href="/home/{{user.id}}"><button class="back">Back</button></a></div>
+    </div>
+    <br>
+    <div class="line"></div><br><br>
+    <div class="products">
+        {% for product in products %}
+        <form action="/home/{{user.id}}/cart" method="post">
+            {% csrf_token %}
+            <input type="text" value="{{product.product_id}}" name="buyproduct" hidden>
+            <div class="pro">
+            <img class="image" src="{{product.image.url}}" alt="image" width="150px" height="150px">
+            <div class="details">
+                <span style="font-size: 18px;font-weight: bold;">{{product.name}}</span> <br><br>
+                <span style="font-weight: bold;font-size: 16px;">Description -- </span><br>
+                <div class="cont">{{product.description}} </div>
+                <span style="font-weight: bold;font-size: 16px;">Type -- {{product.product_type}}, {{product.sub_type}}</span><br>
+                <span style="font-weight: bold;font-size: 18px;">Price -- {{product.price}}</span> <br>
+            </div>
+            <br>
+            <button class="buy" type="submit">Buy Now</button>
+        </form>
+        <form action="/home/{{user.id}}/cart" method="post">
+            {% csrf_token %}
+            <input type="text" value="{{product.product_id}}" name="operation" hidden>
+            <button class="remove" type="submit">Remove from cart</button>
+        </form>
+        </div><br>
+        <br>
+        {% endfor %}
+    </div>
+</body>
+</html>

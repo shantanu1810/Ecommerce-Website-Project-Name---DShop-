@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pro{
+            width: 100%;
+            display: flex;
+            align-items: left;
+            text-align: left;
+            position: relative;
+            font-weight: bold;
+        }
+        .new{
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: yellow;
+            padding: 5px;
+            border: 2px solid blue;
+            font-weight: bold;
+            border-radius: 5px;
+            animation: shadow 2s infinite;
+        }
+        .action{
+            position: absolute;
+            bottom: 0px;
+            right: 0;
+            padding: 10px;
+            background: red;
+            color: white;
+            font-weight: bold;
+            border: 1px solid blue;
+        }
+        img{
+            padding-right: 10px;
+        }
+        @keyframes shadow{
+            0%{
+                box-shadow: 0 0 5px 2px rgba(0, 0, 255,0.9);
+            }
+            50%{
+                box-shadow: 0 0 9px 6px rgba(21, 0, 255,0.5);
+            }
+            100%{
+                box-shadow: 0 0 5px 2px rgba(0, 8, 255,0.9);
+            }
+        }
+        header{
+            position: relative;
+            text-align: center;
+            font-weight: bold;
+        }
+        .back{
+            position: absolute;
+            top: 1px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Manage and Handle product orders and confirm the orders or cancel accordingly
+        <a class="back" href="/bussinessPage/{{owner.id}}"><button>Back</button></a>
+    </header>
+    <hr>
+    {% for product in products %}
+    <form action="/bussinessPage/{{owner.id}}/ProductsOrderStatus" method="post">
+        {% csrf_token %}
+    <input type="text" name="pid" value="{{product.product_id}}" hidden>
+    <button class="pro" type="submit"><div class="product">
+        <img src="{{product.image.url}}" alt="{{product.product_id}}" height="100px" width="100px">
+
+        </div>
+        {{product.name}}
+        <br><br>
+        {% if product.new_order != '0' %}
+        <div class="new">+{{product.new_order}} new order</div>
+        <div class="action">Urgent Action required !</div>
+        {% endif %}
+    </button>
+    </form>
+    <br>
+    {% endfor %}
+</body>
+</html>

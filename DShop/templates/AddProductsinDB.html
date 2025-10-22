@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <script>
+        function upload(){
+            const fileUploadInput = document.querySelector('.imageupload');
+            const image = fileUploadInput.files[0];
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(image);
+            fileReader.onload = (fileReaderEvent) => {
+                const Picture = document.querySelector('#preview');
+                Picture.style.display='block';
+                Picture.style.backgroundImage = `url(${fileReaderEvent.target.result})`;
+                console.log(fileReaderEvent.target.result);
+            }
+        }   
+    </script>
+    <style>
+        body{
+            background: lightblue;
+        }
+        .message{
+            font-weight: bold;
+            font-size: large;
+            width: 85%;
+            float: left;
+        }
+        .line{
+            border: 2px solid black;
+        }
+        .success{
+            text-align: center;
+            background: rgb(6, 233, 6);
+            padding: 5px;
+        }
+        .fail{
+            text-align: center;
+            background: red;
+            padding: 5px;
+        }
+        .form{
+            font-weight: bold;
+            
+        }
+        input{
+            width: 80%;
+        }
+        .addr{
+            height: 60px;
+        }
+        .saving{
+            margin-left: 35%;
+            background: rgb(3, 174, 3);
+            color: rgb(253, 253, 254);
+            height: 30px;
+            width: 150px;
+        }
+        .preimage{
+            width: 150px;
+            height: 150px;
+            display: none;
+        }
+        .cont{
+            display: flex;
+            justify-content: end;
+        }
+    </style>
+    <script>
+        var loadFile = function(event) {
+        var output = document.getElementById('output');
+        output.style.display='block';
+        output.src = URL.createObjectURL(event.target.files[0]);
+        output.onload = function() {
+        URL.revokeObjectURL(output.src)
+        }
+    };
+</script>
+</head>
+<body>
+    <div class="message">Add Products in your digital shop.</div>
+    <div class="cont"><a href="/bussinessPage/{{owner.id}}"><button class="homepagere">Back</button></a><br><br></div><br>
+    <div class="line"></div>
+    {% if not message_success == "" %}
+    <div class="success">
+        {{message_success}}
+    </div>
+    {% endif %}
+    {% if not message_fail == "" %}
+    <div class="fail">
+        {{message_fail}}
+    </div>
+    {% endif %}
+    <br>
+    <div class="form">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            Product Image -- <br>
+            <img id="output" class="preimage"/><br>
+            <input type="file" name="p_image" accept="image/*" onchange="loadFile(event)"> <br><br>
+            Product Name -- <br>  <input type="text" name="name" required><br><br>
+            Product Price (per piece) -- <br> <input type="text" name="price" required><br><br>
+            Description -- <br> <input type="text" name="description" required><br><br>
+            Product Type -- <br> <input type="text" name="product_type" required><br><br>
+            Product Brand -- <br> <input type="text" name="brand" required><br><br>
+            Sub Type(for easily search by custoners) -- <br> <input type="text" name="sub_type" required><br><br>
+            <button type="submit" class="saving">ADD PRODUCT</button>
+        </form>
+    </div>
+    <br><br><br><br>
+    <footer>
+        {% include 'footer1.html' %}
+    </footer>
+</body>
+</html>

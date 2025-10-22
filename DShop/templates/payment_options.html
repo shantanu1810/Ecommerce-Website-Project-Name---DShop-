@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .header{
+            background: blue;
+            padding: 10px;
+            color: white;
+            font-weight: bold;
+        }
+        .center{
+            display: flex;
+            justify-content: center;
+        }
+        .all{
+            margin-top: 40px;
+            padding: 20px;
+            border: 2px  solid black;
+            width: 300px;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 2px  4px 6px grey;
+        }
+        .name{
+            width: 200px;
+            margin-left: 60px;
+        }
+        .image{
+            float: left;
+        }
+        .d{
+            width: 50%;
+            float: left;
+            text-align: center;
+        }
+        .paymentmode{
+            display: flex;
+            justify-content: center;
+        }
+        .pay{
+            width: 100%;
+            height: 30px;
+            border-radius: 15px;
+            background: rgb(37, 254, 21);
+            font-weight: bold;
+            box-shadow: 2px  3px  4px  green;
+        }
+        #address{
+            width: 300px;
+            height: auto;
+            resize: none;
+        }
+        .back{
+            background: #000;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+        }
+        .back:active{
+            transform: scale(0.94);
+            background: white;
+            color: black;
+        }
+    </style>
+    <script>
+        document.getElementById('DFrom').addEventListener('submit',
+            function(event){
+                event.preventDefault();
+            }
+        );
+    </script>
+</head>
+<body>
+    <div class="header">
+        <button  onclick="history.back()" class="back">Back
+        </button>
+        Make Payment
+    </div>
+    <div class="center">
+    <div class="all">
+    <form action="/home/{{user.id}}/purchase/{{product.product_id}}/placed-order" method="post" id="DFrom">
+        {% csrf_token %}
+    <div class="detials">
+        Product Details
+        <hr>
+        <img  class="image" src="{{product.image.url}}" alt="Image"  height="50px" width="50px">
+        <div class="name">{{product.name}}</div>  <br> <br>
+        <hr>
+        Address
+        <hr>
+        {{address}}
+        <input type="text" name="address" value="{{address}}" hidden>
+        <hr>
+        <div class="d">Quantity</div>
+        <div class="d">Total Amount</div><br>
+        <hr>
+        <input type="text" value="{{quantity}}" name="quant" hidden>
+        <input type="text" value="{{gift}}" name="gift" hidden>
+        <input type="text" value="{{totalamount}}" name="totalamount" hidden>
+        <div class="d">{{quantity}}</div>
+        <div class="d">{{totalamount}}</div><br>
+        <hr>
+    </div><br>
+    Payment Mode Available
+    <hr>
+    <div class="paymentmode">
+        <button class="pay" type="submit">Cash On delivery</button>
+    </div>
+    </form>
+    </div>
+    </div>
+</body>
+</html>
