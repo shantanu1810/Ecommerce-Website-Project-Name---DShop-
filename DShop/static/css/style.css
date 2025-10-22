@@ -1,0 +1,217 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.aboutus{
+    width:100%;
+    height: 30px;
+    background-color: #f0f0f0;
+}
+.border{
+    border: 2px solid transparent;
+}
+.border:hover{
+    border: 2px solid black;
+    font-size: 12px;
+    font-weight: bold;
+}
+.aboutus a{
+    text-align: center;
+    font-size: 14px;
+    color: #000;
+    margin-top: 8px;
+    position: absolute;
+    right: 2%;
+}
+.logo img{
+    width: 180px;
+    height: 140px;
+    margin: 25px;
+    padding: 10px;
+}
+.logo img:hover{
+    width: 185px;
+    height: 145px;
+    
+}
+
+.signin{
+    margin: auto;
+    width: 50%;
+    height: 100%;
+   text-align: center;
+}
+.horizontal_line {
+  width: 20%; 
+  height: 1px;
+  background-color: black; 
+  border: none; 
+}
+.signin h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.createAccount{
+    margin: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.create_account{
+    margin: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    gap: 10px;
+
+}
+.create_account a{
+    color: black;
+
+}
+#username{
+    width: 50%;
+    height: 40px;
+    border-radius: 10px;
+   padding: 10px;
+   border: none;
+   background-color: #f0f0f0;
+   font-weight: bolder;
+   font-size: 15px;
+}
+#username:focus{
+    outline:none;
+    border: 2px solid rgb(23, 16, 36);
+}
+
+
+#btn{
+    width: 50%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color:rgb(74, 107, 253) ;
+    cursor: pointer;
+    color: white;
+}
+
+#btn:hover{
+    font-size: 25px;
+    border: 2px solid black;
+}
+.line{
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.others{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+    padding: 10px;
+
+}
+
+.others button{
+    margin-left: 27%;
+    width: 45%;
+    height: 40px;
+    border-radius: 50px;
+    border: none;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 3px;
+    cursor: pointer;
+}
+.others i {
+    font-size: 20px;
+    position: relative;
+}
+
+.stay{
+        margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    gap: 10px;
+}
+.circle{
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid black;
+    color:black;
+    cursor: pointer;
+}
+.footer{
+    width: 100%;
+    height: 50px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: black;
+    gap: 5px;
+    position: absolute;
+    bottom: 0;
+}
+.footer a{
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+   
+}
+.footer span{
+    color: black;
+    font-weight: bold;
+    margin: 2px;
+}
+.effect{
+    font-size: 20px;
+    color: black;
+    transition: font-size 0.3s ease-in-out;
+}
+.effect:hover{
+   font-size: 22px;
+   color: rgb(74, 107, 253);
+}
+.hov{
+    color: black;
+    font-size: 14px;
+}
+.hov:hover{ 
+    color: rgb(119, 141, 143) ;
+    font-weight: bold;
+}
+.back{
+    width: 100px;
+    font-weight: bold;
+    background: white;
+    box-shadow: 2px 4px 10px rgb(91, 90, 90);
+    border-radius: 5px;
+}
+.back:active{
+    transform: scale(0.97);
+}

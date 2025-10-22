@@ -1,0 +1,121 @@
+        .items{
+            width: 16%;
+            font-weight: bold;
+        }
+        .tre{
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+        }
+        .brandl{
+            height: 110px;
+            width: 120px;
+        }
+        .brand{
+            padding: 10px;
+            display: inline-block;
+        }
+        .bold{
+            font-size: large;
+            font-weight: bold;
+        }
+        .textfield{
+            width: 70%;
+            margin: 20px;
+            
+        }
+        .shopbutton{
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            border: 2px solid black;
+            padding: 8px;
+            border-radius: 30px;
+            background: #000;
+        }
+        .start_shop{
+            width: 100%;
+            position: relative;
+            border: 2px solid black;
+            border-radius: 40px;
+            background: #f6ec81;
+        }
+        .trend{
+            height: 100px;
+            overflow-x: scroll;
+            white-space: nowrap;
+            overflow-y: hidden;
+            scrollbar-width: none;
+        }
+        .brands{
+            overflow: auto;
+            white-space: nowrap;
+            overflow-y: hidden;
+            scrollbar-width: none;
+        }
+        .phones{
+            overflow: auto;
+            white-space: nowrap;
+            overflow-y: hidden;
+            scrollbar-width: none;
+        }
+        .accessories{
+            background: #000;
+            height: 200px;
+            width: 100%;
+        }
+        .text_btn{
+            width: 45%;
+            color: white;
+            padding: 30px;
+            float: left;
+        }
+        .acc_btn{
+            background: #ffffff;
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 15px;
+            width: 100px;
+            border: 2px solid rgb(118, 27, 27);
+        }
+        .photos{
+            height: 200px;
+            position: absolute;
+            right: 0;
+            width: 50%;
+            color: white;
+        }
+        .accessories_pic{
+            height: 100px;
+            width: 100px;
+            position: absolute;
+        }
+        #pos1{
+            top: 20px;
+            left: 50%;
+        }
+        #pos2{
+            top: 50px;
+            left: 40%;
+        }
+        #pos3{
+            top: 80px;
+            left: 30%;
+        }
+        .phonedisplay{
+            overflow: auto;
+            white-space: nowrap;
+            overflow-y: hidden;
+            scrollbar-width: none;
+        }
+        .product{
+            display: inline-block;
+            font-weight: bold;
+            text-align: center;
+        }
+        .mobile{
+            margin: 10px;
+            height: 100px;
+            width: 100px;
+        }
+        

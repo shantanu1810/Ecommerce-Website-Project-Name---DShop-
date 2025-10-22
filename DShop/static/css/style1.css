@@ -1,0 +1,75 @@
+.message{
+    margin-left: 20px;
+    float: left;
+    margin-right: 10px;
+}
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.heading{
+    text-align: center;
+    font-weight: bold;
+    font-size: 28px;
+}
+.baccount, .paccount{
+    height: 40px;
+    margin: 5px;
+    background: transparent;
+    border-radius: 20px;
+}
+button:active{
+    transform: scale(0.94);
+}
+.personala{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.pa{
+    padding: 40px;
+    border-radius: 10px;
+}
+input{
+    width: 220px;
+    margin-top: 10px;
+    height: 30px;
+    border-radius: 15px;
+    font-weight: bold;
+    padding: 5px;
+}
+label{
+    font-weight: bold;
+}
+.create{
+    width: 220px;
+    height: 40px;
+    border-radius: 20px;
+    background: rgb(28, 234, 249);
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 0px;
+}
+.create:hover, .paccount:hover, .baccount:hover{
+    background: rgb(140, 242, 250);
+}
+.personalb{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    
+}
+.paccount{
+    background: rgb(196, 195, 195);
+}
+.back{
+    margin-left: 20px;
+    font-weight: bold;
+    width: 60px;
+    box-shadow: 1px 2px 5px black;
+}
+.back:active{
+    transform: scale(0.90);
+}

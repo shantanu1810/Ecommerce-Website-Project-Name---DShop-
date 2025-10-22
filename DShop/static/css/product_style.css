@@ -1,0 +1,264 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: black;
+}
+.outer{
+     
+    width: 1920px;
+    height: 48px;
+    background-color: rgb(241, 239, 239);
+    margin: auto;
+    margin-top: 102px; 
+    border-radius: 10px;
+}
+.inner{
+    width: 1584px;
+    height: 48px;
+    color: rgb(178, 197, 212);
+    margin: auto;
+}
+.inner-content{
+    cursor: pointer;
+    font-weight: 400;
+    width: 984px;
+    height: 40px;
+    display: flex;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+}
+#a3{
+    color: black;
+    font-size: 20px;
+    font-weight: 900;
+}
+.inner-content span{
+    margin: 10px;
+    padding: 10px;
+}
+.about{
+    display: flex;
+}
+.container{
+    position: relative;
+    margin-left: 10%;
+   margin-top: 17px;
+   width: 40%; 
+  height: 700px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  flex-basis: 60%;
+ 
+} 
+.inner-container img{
+     width: 600px;
+     height: 700px;
+     border: none;
+     background-size: cover;
+     margin-top: 5px;
+}
+
+#para{
+    position: absolute;
+    top: 23px;
+    right: 68px;
+    font-size: 28px;
+    color: rgb(3, 2, 2);
+    z-index: 5;
+}
+
+#heart-logo{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 90px;
+    font-size: 30px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 45px;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+}
+.content{
+ flex-basis: 50%;
+ width: 500px;
+ height: auto;
+}
+.content p{
+    margin-top: 25px;
+    margin-left: 10px;
+    padding: 10px;
+    font-size: 30px;
+    width: 800px;
+
+}
+.brand-name{
+    font-weight: 700;
+}
+.line{
+    margin-left: 25px;
+    width: 70%;
+    height: 1px;
+    background-color: black;
+    margin-top: 45px;
+}
+.item-price{
+    margin-top: 20px;
+    text-align:start;
+    margin-left: 10px;
+    font-size: 14px;
+    padding: 4px;
+    gap: 5;
+}
+
+.item-price p{
+    margin: 0;
+    padding: 0;
+    margin-left: 14px;
+}
+#offer{
+    font-size: 21px;
+    padding: 5px;
+}
+.learn {
+
+  align-items: baseline;
+  font-size: 14px;
+  margin-top: 7px;
+    margin-left: 10px;
+}
+
+.learn p {
+  margin: 0;
+  display: inline;
+  font-size: 21px;
+  padding: 3px;
+
+}
+
+.learn a {
+  margin-left: 10px;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+  
+}
+#price{
+    margin-left: 20px;
+    font-weight: 700;
+    font-size: 29px
+}
+.learn span{
+    font-weight: bolder;
+}
+
+
+
+.circle {
+  width: 24px;
+  height: 24px;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: default;
+  user-select: none;
+
+}
+.condition {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 27px;
+    margin-top: 30px;
+}
+
+.condition-texts {
+    display: flex;
+    gap: 70px;
+}
+
+.condition p {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    font-size:23px;
+}
+#pre{
+    font-weight: bolder;
+}
+
+.buttons{
+margin: auto;
+margin-top: 20px;
+margin-left: 10px ;
+padding: 10px;
+text-align: center;
+font-size: 17px;
+}
+
+.buttonsAll{
+    margin: auto;
+    width: 400px;
+    height: 37px;
+    border: 1px solid rgb(15, 143, 218);
+    color: rgb(16, 112, 221);
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 10px;
+}
+.allButtonContainer{
+    width: auto;
+    height: auto;
+}
+#btn1{
+    background-color: rgb(43, 161, 240);
+    color: white;
+}
+#add-logo{
+    color:rgb(43, 161, 240);
+    font-size: 14px;
+}
+.share-container {
+  position: relative;
+  margin-left: 10%;
+  margin-top: 17px;
+  width: 50%; 
+  height: auto; 
+  display: flex;
+  justify-content: flex-end; /* Align children to the right */
+  align-items: center;
+  border-radius: 15px;
+  right: 0;
+  padding: 10px; /* Optional: for spacing inside the container */
+}
+
+.share {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid black;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 50px; /* Pill shape */
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
